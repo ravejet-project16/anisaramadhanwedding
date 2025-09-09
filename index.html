@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Anisa & Ramadhan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carattere&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2k5xP64u/yX2I6tHnF0zF1r56m9v0v409A3Ww==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary-color: #1A237E; /* Deep twilight blue */
+            --secondary-color: #B0C4DE; /* Light blue accent */
+            --text-color: #333;
+            --title-color: #0D47A1; /* Dark blue for titles */
+            --font-body: 'Inter', sans-serif;
+            --font-title: 'Carattere', cursive;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-color);
+            background-color: #F8F8F8;
+            overflow-x: hidden;
+        }
+
+        .title-font {
+            font-family: var(--font-title);
+        }
+
+        .bg-pattern {
+            background-image: url('https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/wp.png');
+            opacity: 0.4;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url('https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/wp.png');
+        }
+
+        /* Perbaikan: Menonaktifkan efek paralaks di perangkat seluler untuk performa gulir yang lebih baik */
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+
+        .hero-bg {
+            background-image: url('https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/wp.png');
+        }
+
+        /* PERBAIKAN: Mengubah opacity menjadi 0.6 untuk efek dim yang lebih jelas */
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* PERBAIKAN: Menambahkan class baru untuk kartu di bagian Hero */
+        .card-hero {
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-custom {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-custom {
+            background-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(35px);
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .quote-text {
+            font-style: italic;
+            color: var(--title-color);
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background-color: var(--primary-color);
+            border-radius: 9999px;
+            border: 3px solid #F8F8F8;
+            z-index: 10;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            left: 0.75rem;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.75rem;
+            font-size: 0.875rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        /* Perbaikan: Mengatur z-index tombol musik lebih tinggi agar selalu terlihat */
+        #music-btn {
+            background-color: var(--primary-color);
+            transition: transform 0.3s ease-in-out;
+            z-index: 90;
+        }
+
+        #music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .album-cover {
+            width: 120px;
+            height: 120px;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+        }
+
+        .btn-info {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease-in-out;
+            text-decoration: none; /* Tambahan untuk menghilangkan garis bawah pada link */
+        }
+
+        .btn-info:hover {
+            transform: scale(1.05);
+            background-color: #0D47A1;
+        }
+
+        /* NEW CSS FOR COPY BUTTON */
+        .btn-copy {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+
+        .btn-copy:hover {
+            background-color: #0D47A1;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="bg-pattern"></div>
+    
+    <!-- Modal for initial access and music control -->
+    <div id="accessModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 p-4 animate__animated animate__fadeIn">
+        <div class="bg-white rounded-xl shadow-2xl p-4 md:p-8 text-center animate__animated animate__zoomIn flex flex-col items-center">
+            <h2 class="title-font text-3xl font-bold text-title-color">The Wedding of</h2>
+            <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/title1_black.svg" alt="Nama pengantin" class="w-64 my-4">
+            <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/date_black.svg" alt="Tanggal Pernikahan" class="w-32 my-4">
+            
+            <p class="text-l md:text-2xl font-bold mb-2 text-gray-800">
+                Kepada Yth.
+            </p>
+            <p id="namaTamu" class="text-lg md:text-xl font-semibold mb-6 text-gray-800"></p>
+            
+            <button id="open-invitation" class="btn-custom transition duration-300 transform hover:-translate-y-1">Buka Undangan</button>
+        </div>
+    </div>
+
+    <!-- Music Button -->
+    <button id="music-btn" class="fixed bottom-5 right-5 z-40 p-3 rounded-full shadow-lg text-white">
+        Musik
+    </button>
+
+    <!-- Parallax Hero Section -->
+    <div class="parallax-section relative min-h-screen hero-bg hero-overlay flex flex-col items-center justify-center text-white text-center">
+        <!-- PERUBAHAN: Menambahkan div 'card-hero' untuk latar belakang blur dan transparan -->
+        <div class="relative w-full h-full flex flex-col items-center justify-center p-6 md:p-12 max-w-2xl mx-auto rounded-3xl card-hero animate__animated animate__fadeInUp">
+            <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/svd_white.svg" alt="The Wedding of" class="w-48 mb-2 animate__animated animate__fadeInDown">
+            <!-- New image for the couple -->
+            <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/main-photo.png" alt="Anisa dan Ramadhan" class="w-64 h-auto object-cover mb-4 rounded-xl animate__animated animate__zoomIn">
+            <!-- Ganti nama pasangan dengan gambar SVG -->
+            <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/title1.svg" alt="Anisa dan Ramadhan" class="w-64 md:w-96 animate__animated animate__fadeInUp">
+
+            <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/date_white.svg" alt="Tanggal Pernikahan" class="w-48 my-4 animate__animated animate__fadeInUp animate__delay-1s">
+            <!-- Countdown timer without card background -->
+            <div id="countdown" class="flex justify-center items-center mt-6 space-x-4 animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="flex flex-col items-center p-3 md:p-4 rounded-xl">
+                    <span id="days" class="text-2xl md:text-4xl font-bold">00</span>
+                    <span class="text-xs md:text-sm mt-1">Hari</span>
+                </div>
+                <div class="flex flex-col items-center p-3 md:p-4 rounded-xl">
+                    <span id="hours" class="text-2xl md:text-4xl font-bold">00</span>
+                    <span class="text-xs md:text-sm mt-1">Jam</span>
+                </div>
+                <div class="flex flex-col items-center p-3 md:p-4 rounded-xl">
+                    <span id="minutes" class="text-2xl md:text-4xl font-bold">00</span>
+                    <span class="text-xs md:text-sm mt-1">Menit</span>
+                </div>
+                <div class="flex flex-col items-center p-3 md:p-4 rounded-xl">
+                    <span id="seconds" class="text-2xl md:text-4xl font-bold">00</span>
+                    <span class="text-xs md:text-sm mt-1">Detik</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 mt-8">
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-16 parallax-section">
+            <div class="text-center bg-black bg-opacity-50 py-8 rounded-lg mx-auto max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-white title-font">The Unbreaking.</h2>
+                <p class="mt-2 text-gray-200">A Glimpse of Blue.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
+                <div class="gallery-item" data-aos="zoom-in">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid2/f1.jpg" alt="Foto 1" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Blue hums like silence after heartbreak.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid2/f2.jpeg" alt="Foto 2" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Teal is the breath between forgiveness and forgetting.</div>
+                </div>
+                <!-- PERBAIKAN: Mengganti URL untuk foto ketiga agar bisa muncul -->
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid2/f3.jpg" alt="Foto 3" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Midnight blue mourns without sound.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid2/f4.jpeg" alt="Foto 4" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Powder blue cradles the ache of innocence.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid2/f5.jpeg" alt="Foto 5" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Indigo folds time into longing.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid2/f6.jpg" alt="Foto 6" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Cobalt burns like truth buried too deep.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="600">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid2/f7.jpeg" alt="Foto 7" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Sky blue dreams of things it cannot hold.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="700">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid2/f8.jpg" alt="Foto 8" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Steel blue stands where softness once lived.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-16">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-color title-font">A True Love</h2>
+                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir." - Q.S Ar-Rum: 21</p>
+            </div>
+            <div class="flex flex-col lg:flex-row items-center justify-center mt-8 gap-8">
+                <div class="w-full lg:w-1/2 card-custom p-6 text-center" data-aos="fade-right">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/pria.png" alt="Foto Pengantin Pria" class="w-48 h-48 rounded-full mx-auto border-4 border-secondary-color">
+                    <h3 class="mt-4 text-2xl font-bold text-title-color title-font">Ramadhan Burhani Sultan</h3>
+                    <p class="text-gray-500 mt-2">Putra dari Bpk. Ian Mokodompit (Ian) & Ibu Elia Susanti (Eli)</p>
+                    <p class="quote-text mt-4">"Dan Masa lalu untuk ku pahami, masa kini untuk ku temani, dan masa depan untuk ku genggam. Seluruhnya, seutuhnya, selamanya."</p>
+                </div>
+                <div class="w-full lg:w-1/2 card-custom p-6 text-center" data-aos="fade-left">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/wanita.png" alt="Foto Pengantin Wanita" class="w-48 h-48 rounded-full mx-auto border-4 border-secondary-color">
+                    <h3 class="mt-4 text-2xl font-bold text-title-color title-font">Anisa Tri Handayani</h3>
+                    <p class="text-gray-500 mt-2">Putri dari Bpk. Pipin Aripin (Pipin) & Ibu Neni Suryani (Yayan)</p>
+                    <p class="quote-text mt-4">"Pada akhirnya pencarianku akan bermuara bukan pada kesempurnaan melainkan penerimaan, pada sosok yang bisa menerimaku dan juga pengingat saat taatku luntur. Karna tak akan aku temukan sosok sempurna untuk dipilih tapi selalu ada sosok yang layak untuk diterima."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="py-16">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-color title-font">Rincian Acara</h2>
+                <p class="mt-2 text-gray-600">As We Exchange Our Vows, and Begin A New Journey.</p>
+            </div>
+            <div class="relative mt-8 max-w-2xl mx-auto">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="card-custom p-6 transition duration-300 transform hover:scale-105" data-aos="fade-up">
+                            <h3 class="text-2xl font-bold text-title-color title-font">Akad Nikah</h3>
+                            <p class="mt-2 text-gray-500"><i class="fa-solid fa-calendar"></i> <strong>Minggu, 05 Oktober 2025</strong><br><i class="fa-regular fa-clock"></i> 09:00 WIB - 10:00 WIB</p>
+                            <p class="mt-1 text-gray-500"><i class="fa-solid fa-location-dot"></i> Kp. Sindangreret, RT.03/RW.08, Desa. Sukasari, Kec. Pameungpeuk, Kab. Bandung - Jawa Barat</p>
+                            <a href="https://maps.app.goo.gl/your-map-link" target="_blank" class="text-primary-color hover:underline mt-2 inline-block">Lihat di Peta</a>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="card-custom p-6 transition duration-300 transform hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+                            <h3 class="text-2xl font-bold text-title-color title-font">Resepsi Pernikahan</h3>
+                            <p class="mt-2 text-gray-500"><i class="fa-solid fa-calendar"></i> <strong>Minggu, 05 Oktober 2025</strong><br><i class="fa-regular fa-clock"></i> 11:00 WIB - Selesai</p>
+                            <p class="mt-1 text-gray-500"><i class="fa-solid fa-location-dot"></i> Kp. Sindangreret, RT.03/RW.08, Desa. Sukasari, Kec. Pameungpeuk, Kab. Bandung - Jawa Barat</p>
+                            <a href="https://maps.app.goo.gl/your-map-link" target="_blank" class="text-primary-color hover:underline mt-2 inline-block">Lihat di Peta</a>
+                        </div>
+                    </div>
+                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.4957249200909!2d107.5967452839273!3d-7.017326465864936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68eb5e1bd644f3%3A0x30b5108edbb52069!2sLapagan%20Bola%20MA%20AL-HUDA!5e0!3m2!1sid!2sid!4v1755031901839!5m2!1sid!2sid" width="100%" height="200" style="border:0;" class="mt-8 rounded-xl" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+        <!-- Digital Gift Section -->
+        <section id="gift" class="py-16">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-color title-font">Amplop Digital</h2>
+                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">Doa dan restu Anda adalah hadiah terindah. Namun, jika Anda berkenan untuk memberi hadiah, bisa melalui:</p>
+            </div>
+            <div class="flex flex-col md:flex-row justify-center items-center mt-8 gap-6">
+                <div class="card-custom p-6 w-full max-w-sm text-center" data-aos="fade-up">
+                    <h3 class="text-xl font-bold text-title-color font-sans">BCA</h3>
+                    <p class="text-gray-500">A.N. Ramadhan Burhani Sultan</p>
+                    <div class="flex flex-col items-center mt-2">
+                        <p class="text-lg font-bold">
+                            <span id="rekening-bca-ramadhan">8101050696</span>
+                        </p>
+                        <button class="btn-copy" onclick="copyToClipboard('rekening-bca-ramadhan')">
+                            Salin
+                        </button>
+                    </div>
+                </div>
+                <div class="card-custom p-6 w-full max-w-sm text-center" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-bold text-title-color font-sans">BCA</h3>
+                    <p class="text-gray-500">A.N. Anisa Tri Handayani</p>
+                    <div class="flex flex-col items-center mt-2">
+                        <p class="text-lg font-bold">
+                            <span id="rekening-bca-anisa">8103210770</span>
+                        </p>
+                        <button class="btn-copy" onclick="copyToClipboard('rekening-bca-anisa')">
+                            Salin
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Gallery Section -->
+        <section id="more-gallery" class="py-16 parallax-section">
+            <div class="text-center bg-black bg-opacity-50 py-8 rounded-lg mx-auto max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-white title-font">Some Potraits</h2>
+                <p class="mt-2 text-gray-200">An Unexpected Encounter.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
+                <div class="gallery-item" data-aos="zoom-in">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid3/f1.jpg" alt="Momen Berharga" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Azure drips from the eyes of memory.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid3/f2.jpeg" alt="Kebersamaan Abadi" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Navy carries the weight of unsaid prayers.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid3/f3.jpg" alt="Janji Cinta" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Ice blue kisses like a goodbye that never arrived.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid3/f4.jpeg" alt="Senyum Bahagia" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Blue is the echo of everything I almost became.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid3/f5.jpeg" alt="Langkah Baru" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Blue flickers like memory caught between truth and tenderness.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid3/f6.jpg" alt="Satu Tujuan" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Cerulean sighs where longing meets the edge of silence.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="600">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid3/f7.jpeg" alt="Cinta yang Tumbuh" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Twilight blue folds the day into a quiet farewell.</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="700">
+                    <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/grid3/f8.jpg" alt="Jalan Berdua" class="w-full h-auto rounded-xl">
+                    <div class="gallery-caption">Blue bruises the sky with everything we dared to feel.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing Section -->
+        <section id="closing" class="py-16 text-center">
+            <div class="card-custom p-8 max-w-2xl mx-auto" data-aos="zoom-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-color title-font">The Wedding Of</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-color title-font">Anisa & Ramadhan</h2>
+                <p class="mt-4 text-gray-600">
+                    Merupakan suatu kehormatan dan kebahagiaan bagi kami untuk berbagi momen spesial ini bersama Anda. Kehadiran dan doa restu Anda adalah hadiah terindah. Kami menantikan kehadiran Anda.
+                </p>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-6 mt-12 bg-gray-200">
+        <p class="text-gray-600">&copy; 2025 The Wedding Of Anisa & Ramadhan.</p>
+        <p class="text-gray-600">Invitation By KalaCitra.</p>
+        <div class="mt-2">
+            <!-- Perubahan: Mengubah button menjadi a (link) -->
+            <a href="info.html" class="btn-info">Info Undangan</a>
+        </div>
+    </footer>
+
+    <!-- Message box for notifications -->
+    <div id="message-box" class="fixed bottom-5 right-5 z-50 p-4 rounded-lg shadow-lg bg-green-500 text-white animate__animated animate__fadeInRight animate__fadeOutRight" style="display:none;"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        const sections = document.querySelectorAll('main section');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Countdown Timer
+        const eventDate = new Date("Oct 5, 2025 09:00:00").getTime();
+        const countdownElement = document.getElementById("countdown");
+
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                countdownElement.innerHTML = "<div>Acara sedang berlangsung!</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+        }, 1000);
+
+        // Copy to clipboard function
+        function copyToClipboard(elementId) {
+            try {
+                const textToCopy = document.getElementById(elementId).innerText;
+                const tempInput = document.createElement("textarea");
+                tempInput.value = textToCopy;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+                
+                showMessage("Nomor rekening berhasil disalin!");
+            } catch (err) {
+                console.error('Gagal menyalin:', err);
+                showMessage("Gagal menyalin nomor rekening.");
+            }
+        }
+
+        // Message box handler
+        function showMessage(msg) {
+            const messageBox = document.getElementById('message-box');
+            messageBox.innerText = msg;
+            messageBox.style.display = 'block';
+            setTimeout(() => {
+                messageBox.classList.remove('animate__fadeInRight');
+                messageBox.classList.add('animate__fadeOutRight');
+                setTimeout(() => {
+                     messageBox.style.display = 'none';
+                     messageBox.classList.remove('animate__fadeOutRight');
+                     messageBox.classList.add('animate__fadeInRight');
+                }, 1000);
+            }, 3000);
+        }
+
+        // Music player and modal logic
+        const accessModal = document.getElementById('accessModal');
+        const openInvitationBtn = document.getElementById('open-invitation');
+        const musicBtn = document.getElementById('music-btn');
+        const musicAudio = new Audio('https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/song.mp3');
+        
+        let isPlaying = false;
+        
+        // Atur agar tombol musik hanya terlihat setelah modal ditutup
+        musicBtn.style.display = 'none';
+
+        openInvitationBtn.addEventListener('click', () => {
+            accessModal.classList.remove('animate__fadeIn');
+            accessModal.classList.add('animate__fadeOut');
+            setTimeout(() => {
+                accessModal.style.display = 'none';
+                musicBtn.style.display = 'block';
+                musicAudio.play();
+                isPlaying = true;
+                musicBtn.innerHTML = 'Musik <i class="fa-solid fa-pause"></i>';
+            }, 500);
+        });
+
+        musicBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                musicAudio.pause();
+                musicBtn.innerHTML = 'Musik <i class="fa-solid fa-play"></i>';
+            } else {
+                musicAudio.play();
+                musicBtn.innerHTML = 'Musik <i class="fa-solid fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Loop musik
+        musicAudio.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+        
+        // --- SCRIPT UNTUK NAMA TAMU ---
+        // PENTING: Pindahkan fungsi ini ke atas bersama script utama.
+        
+        // Fungsi untuk mendapatkan parameter dari URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Mengambil nama tamu dari URL
+        const guestName = getQueryParam('to');
+
+        // Menampilkan nama tamu jika ada
+        if (guestName) {
+            document.getElementById('namaTamu').innerText = guestName;
+        } else {
+            document.getElementById('namaTamu').innerText = "~Nama Tamu~";
+        }
+
+        // Perubahan: Menghapus event listener untuk tombol Info Undangan karena sudah menjadi link
+    </script>
+</body>
+</html>
