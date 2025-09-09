@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Tautan Undangan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ecf0f1;
+            color: #1f2c3d;
+            background-image: url('https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/bg_form.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .container-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 24px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 95%;
+        }
+        @media (min-width: 768px) {
+            .container-box {
+                width: 100%;
+            }
+        }
+        .btn-primary {
+            background-color: #2980b9;
+            border: none;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #1a648d;
+        }
+        .btn-add, .btn-remove {
+            background-color: transparent;
+            border-radius: 9999px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            padding: 0.4rem 0.8rem;
+        }
+        /* Style untuk tombol Add */
+        .btn-add {
+            border: 2px solid #2980b9;
+            color: #2980b9;
+        }
+        .btn-add:hover {
+            background-color: #2980b9;
+            color: #fff;
+        }
+        /* Style untuk tombol Delete */
+        .btn-remove {
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+        }
+        .btn-remove:hover {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+        .input-field {
+            border: 1px solid #bdc3c7;
+            border-radius: 8px;
+            padding: 0.75rem;
+            width: 100%;
+            transition: border-color 0.3s;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #2980b9;
+        }
+        .textarea-field {
+            border: 1px solid #bdc3c7;
+            border-radius: 8px;
+            padding: 0.75rem;
+            width: 100%;
+            height: 12rem;
+            transition: border-color 0.3s;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .textarea-field:focus {
+            outline: none;
+            border-color: #2980b9;
+        }
+        /* CSS untuk animasi */
+        .animated-field {
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            max-height: 500px;
+            opacity: 1;
+            transform: translateY(0);
+            overflow: hidden;
+        }
+        .animated-field.enter {
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        .animated-field.exit {
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        /* Style untuk tombol hapus pesan */
+        .btn-delete-message {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .btn-delete-message:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body class="bg-[#ecf0f1] flex items-center justify-center p-4 min-h-screen">
+
+    <!-- Tombol Dashboard di pojok kiri atas -->
+    <a href="dashboard.html" class="absolute top-4 left-4 btn-primary py-2 px-4 rounded-full">Dashboard</a>
+
+    <div class="container-box w-full max-w-2xl">
+        <h1 class="text-3xl font-bold text-center mb-1">List Tamu Undangan</h1>
+        <h2 class="text-xl font-semibold text-center mb-6">Anisa & Ramadhan Wedding</h2>
+
+        <div class="space-y-4 mb-6" id="guest-form-container">
+            <div class="flex flex-col md:flex-row items-end gap-2 animated-field" id="guest-form-1">
+                <div class="w-full">
+                    <label for="guest-name-1" class="block text-sm font-medium mb-1">Nama Tamu</label>
+                    <input type="text" id="guest-name-1" class="input-field" placeholder="Masukkan nama tamu...">
+                </div>
+                <div class="w-full">
+                    <label for="guest-phone-1" class="block text-sm font-medium mb-1">Nomor WhatsApp</label>
+                    <input type="text" id="guest-phone-1" class="input-field" placeholder="+628123456789">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+            <div class="flex gap-2">
+                <button id="add-btn" class="btn-add">Add</button>
+                <button id="remove-btn" class="btn-remove">Delete</button>
+            </div>
+            <button id="generate-btn" class="btn-primary w-full sm:w-auto">Buat Pesan & Tautan</button>
+        </div>
+
+        <!-- Bagian Hasil Pesan -->
+        <div id="result-container" class="hidden">
+            <h2 class="text-xl font-semibold mb-2">Hasil Pesan WhatsApp</h2>
+            <div id="message-list" class="space-y-4">
+                <!-- Pesan akan di-render di sini -->
+            </div>
+        </div>
+
+        <!-- Notifikasi -->
+        <div id="notification" class="hidden mt-4 text-sm text-center text-green-600">
+            Pesan berhasil disalin!
+        </div>
+
+        <!-- Logo dan copyright di bagian bawah -->
+        <div class="flex flex-col items-center mt-8">
+            <img src="https://raw.githubusercontent.com/ravejet-project16/anisaramadhanwedding/main/public/assets/images/kalacitra.png" class="h-12 w-auto filter invert" alt="Logo Kalacitra" />
+            <p class="text-sm mt-2">KalaCitra 2025</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let fieldCount = 1;
+            const guestFormContainer = document.getElementById('guest-form-container');
+            const addBtn = document.getElementById('add-btn');
+            const removeBtn = document.getElementById('remove-btn');
+            const generateBtn = document.getElementById('generate-btn');
+            const resultContainer = document.getElementById('result-container');
+            const messageList = document.getElementById('message-list');
+            const notification = document.getElementById('notification');
+
+            // URL undanganmu, GANTI dengan link Netlify-mu
+            // Contoh: 'https://the-wedding-of-anisa-and-ramadhan.netlify.app'
+            const INVITATION_URL = 'https://kalacitra-anisaramadhan-wedding.netlify.app';
+
+            // Menambahkan event listener ke container induk
+            guestFormContainer.addEventListener('input', (e) => {
+                const input = e.target;
+                if (input.id.startsWith('guest-phone-')) {
+                    let value = input.value.trim();
+                    if (value.startsWith('0') && value.length > 1) {
+                        input.value = '+62' + value.substring(1);
+                    } else if (value.length > 0 && !value.startsWith('+62')) {
+                        input.value = '+62' + value;
+                    }
+                }
+            });
+
+            addBtn.addEventListener('click', () => {
+                fieldCount++;
+                const newField = document.createElement('div');
+                newField.id = `guest-form-${fieldCount}`;
+                newField.className = 'flex flex-col md:flex-row items-end gap-2 animated-field enter'; // Tambahkan class 'enter'
+                newField.innerHTML = `
+                    <div class="w-full">
+                        <label for="guest-name-${fieldCount}" class="block text-sm font-medium mb-1">Nama Tamu</label>
+                        <input type="text" id="guest-name-${fieldCount}" class="input-field" placeholder="Masukkan nama tamu...">
+                    </div>
+                    <div class="w-full">
+                        <label for="guest-phone-${fieldCount}" class="block text-sm font-medium mb-1">Nomor WhatsApp</label>
+                        <input type="text" id="guest-phone-${fieldCount}" class="input-field" placeholder="+628123456789">
+                    </div>
+                `;
+                guestFormContainer.appendChild(newField);
+
+                // Hapus class 'enter' setelah field ditambahkan untuk memulai animasi
+                setTimeout(() => {
+                    newField.classList.remove('enter');
+                }, 10);
+            });
+            
+            removeBtn.addEventListener('click', () => {
+                if (fieldCount > 1) {
+                    const lastField = document.getElementById(`guest-form-${fieldCount}`);
+                    lastField.classList.add('exit'); // Tambahkan class 'exit' untuk memulai animasi
+
+                    // Hapus elemen setelah animasi selesai
+                    setTimeout(() => {
+                        lastField.remove();
+                        fieldCount--;
+                    }, 400); // Sesuaikan dengan durasi transisi di CSS
+                }
+            });
+
+            generateBtn.addEventListener('click', () => {
+                messageList.innerHTML = '';
+                resultContainer.classList.remove('hidden');
+
+                for (let i = 1; i <= fieldCount; i++) {
+                    const guestNameInput = document.getElementById(`guest-name-${i}`);
+                    const guestPhoneInput = document.getElementById(`guest-phone-${i}`);
+                    
+                    const guestName = guestNameInput.value.trim();
+                    const guestPhone = guestPhoneInput.value.trim();
+
+                    if (guestName === '') {
+                        continue; // Lewati jika nama kosong
+                    }
+
+                    const encodedGuestName = encodeURIComponent(guestName);
+                    const customLink = `${INVITATION_URL}/?to=${encodedGuestName}`;
+                    const whatsappNumber = guestPhone.replace(/\+/g, '').replace(/[^0-9]/g, '');
+
+                    // Buat teks pesan WhatsApp
+                    const message = `Yth. Bapak/Ibu/Saudara/i\n*${guestName}*\n\nTanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di acara pernikahan kami yang akan diselenggarakan pada:\n\n*Hari, Tanggal: Minggu, 5 Oktober 2025*\n\nKlik tautan di bawah ini untuk melihat undangan digital:\n\n${customLink}\n\nMerupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.\n\nAtas kehadiran serta doa restu Anda, kami ucapkan terima kasih.\n\nSalam hormat,\nAnisa & Ramadhan`;
+                    
+                    const messageItem = document.createElement('div');
+                    messageItem.className = 'bg-gray-100 p-4 rounded-lg flex flex-col space-y-2';
+                    messageItem.innerHTML = `
+                        <h3 class="font-semibold">${guestName}</h3>
+                        <textarea class="textarea-field h-32" readonly>${message}</textarea>
+                        <div class="flex flex-col md:flex-row gap-2">
+                            <button class="btn-primary flex-1 btn-copy" data-message-id="${i}">Salin Pesan</button>
+                            <a href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}" target="_blank" class="btn-primary flex-1 text-center">Kirim via WhatsApp</a>
+                        </div>
+                        <div class="mt-2 flex justify-end">
+                            <button class="btn-delete-message">Hapus</button>
+                        </div>
+                    `;
+                    messageList.appendChild(messageItem);
+                }
+
+                // Tambahkan event listener untuk tombol salin dan hapus
+                messageList.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('btn-copy')) {
+                        const messageId = e.target.dataset.message-id;
+                        const messageTextarea = e.target.closest('.flex.flex-col').querySelector('textarea');
+                        
+                        messageTextarea.select();
+                        document.execCommand('copy');
+                        
+                        notification.textContent = `Pesan untuk ${e.target.closest('.flex.flex-col').querySelector('h3').textContent} berhasil disalin!`;
+                        notification.classList.remove('hidden');
+                        setTimeout(() => {
+                            notification.classList.add('hidden');
+                        }, 3000);
+                    } else if (e.target.classList.contains('btn-delete-message')) {
+                        const messageItem = e.target.closest('.bg-gray-100');
+                        messageItem.remove();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
